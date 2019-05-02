@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Quality filtering of reads &mdash; Archaeogenetics 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'0.0.1',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Preparation of the reference sequence" href="PreparationReference.html" />
+    <link rel="prev" title="1. List of Tools" href="ListTools.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Archaeogenetics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ListTools.html">1. List of Tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Quality filtering of reads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reads-quality-control">2.1. Reads quality control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reads-quality-filtering">2.2. Reads quality filtering</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PreparationReference.html">3. Preparation of the reference sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReadsMapping_v2.html">4. Alignment of the reads to the reference sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SummaryReports.html">5. Create Summary Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DamageAnalysis.html">6. Damage analysis and quality rescaling of the BAM file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VariantsCall.html">7. Variant calling and visualization</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Archaeogenetics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. Quality filtering of reads</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ReadsFiltering.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quality-filtering-of-reads">
+<h1>2. Quality filtering of reads<a class="headerlink" href="#quality-filtering-of-reads" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reads-quality-control">
+<h2>2.1. Reads quality control<a class="headerlink" href="#reads-quality-control" title="Permalink to this headline">¶</a></h2>
+<p>FastQC performs some quality control checks on raw sequence data coming from high throughput sequencing pipelines. It provides a modular set of analyses which you can use to give a quick impression of whether your data has any problems of which you should be aware before doing any further analysis.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastqc</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>To analyze multiple fastq files you can run fastqc as follow:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastqc</span> <span class="o">*.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>After completing, fastqc generates for each fastq file a summary report as follow:</p>
+<img alt="_images/fastqc.png" src="_images/fastqc.png" />
+</div>
+<div class="section" id="reads-quality-filtering">
+<h2>2.2. Reads quality filtering<a class="headerlink" href="#reads-quality-filtering" title="Permalink to this headline">¶</a></h2>
+<p>Reads filtering is a crucial step as it will affect all downstream analyses. One of the important things to do is to trim the adapters that were used during the library preparation . For this step we will use the program <strong>AdapterRemoval</strong>, which performs adapter trimming of sequencing reads and subsequent merging of paired-end reads with negative insert sizes (an overlap between two sequencing reads derived from a single DNA fragment) into a single collapsed read:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AdapterRemoval</span> <span class="o">--</span><span class="n">file1</span> <span class="n">filename_R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">file2</span> <span class="n">filename_R2</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">basename</span> <span class="n">filename</span> <span class="o">--</span><span class="n">minlength</span> <span class="mi">30</span> <span class="o">--</span><span class="n">trimns</span> <span class="o">--</span><span class="n">trimqualities</span> <span class="o">--</span><span class="n">collapse</span> <span class="o">--</span><span class="n">gzip</span>
+</pre></div>
+</div>
+<p>Here some useful options of AdapterRemoval:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Function</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>-file1</em> &lt;string&gt;</td>
+<td>Forward reads input file(s) in fastq(.gz) file format. Required option (single-end reads).</td>
+</tr>
+<tr class="row-odd"><td><em>-file2</em> &lt;string&gt;</td>
+<td>Reverse reads input file(s) in fastq(.gz) file format.</td>
+</tr>
+<tr class="row-even"><td><em>–basename</em> &lt;string&gt;</td>
+<td>Default prefix for all output files for which no filename was explicitly set [current: your_output]</td>
+</tr>
+<tr class="row-odd"><td><em>–adapter1</em> &lt;sequence&gt;</td>
+<td>Adapter sequence expected to be found in mate 1 reads [current: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNATCTCGTATGCCGTCTTCTGCTTG]</td>
+</tr>
+<tr class="row-even"><td><em>–adapter2</em> &lt;sequence&gt;</td>
+<td>Adapter sequence expected to be found in mate 2 reads [current: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT]</td>
+</tr>
+<tr class="row-odd"><td><em>–trimns</em></td>
+<td>If set, trim ambiguous bases (N) at 5’/3’ termini [current: off]</td>
+</tr>
+<tr class="row-even"><td><em>–trimqualities</em></td>
+<td>If set, trim bases at 5’/3’ termini with quality scores &lt;= to –minquality value [current: off]</td>
+</tr>
+<tr class="row-odd"><td><em>–minquality</em> &lt;integer&gt;</td>
+<td>PHRED inclusive minimum values; see –trimqualities for details [current: 2]</td>
+</tr>
+<tr class="row-even"><td><em>–minlength</em> &lt;integer&gt;</td>
+<td>Reads shorter than this length are discarded following trimming [current: 15].</td>
+</tr>
+<tr class="row-odd"><td><em>–collapse</em></td>
+<td>When set, paired ended read alignments of –minalignmentlength or more bases are combined into a single consensus sequence, representing the complete insert</td>
+</tr>
+<tr class="row-even"><td><em>–minalignmentlength*</em> &lt;integer&gt;</td>
+<td>If –collapse is set, paired reads must overlap at least this number of bases to be collapsed, and single-ended reads must overlap at least this number of bases with the adapter to be considered complete template molecules [current: 11].</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Several tools can be used for reads pre-processing and filtering, for example:
+<em>ClipAndMerge</em> (<a class="reference external" href="https://github.com/apeltzer/ClipAndMerge">https://github.com/apeltzer/ClipAndMerge</a>)
+<em>LeeHom</em> (<a class="reference external" href="https://github.com/grenaud/leeHom">https://github.com/grenaud/leeHom</a>)
+<em>Atropos</em> (<a class="reference external" href="https://github.com/jdidion/atropos">https://github.com/jdidion/atropos</a>)
+<em>Fastp</em> (<a class="reference external" href="https://github.com/OpenGene/fastp">https://github.com/OpenGene/fastp</a>).</p>
+</div>
+<p>After reads filtering open your adapter-trimmed fastq file again in FastQC and see the differences before and after adapter trimming.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="PreparationReference.html" class="btn btn-neutral float-right" title="3. Preparation of the reference sequence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ListTools.html" class="btn btn-neutral float-left" title="1. List of Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Claudio Ottoni
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

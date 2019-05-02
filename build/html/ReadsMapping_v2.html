@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Alignment of the reads to the reference sequence &mdash; Archaeogenetics 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'0.0.1',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Create Summary Reports" href="SummaryReports.html" />
+    <link rel="prev" title="3. Preparation of the reference sequence" href="PreparationReference.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Archaeogenetics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ListTools.html">1. List of Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReadsFiltering.html">2. Quality filtering of reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreparationReference.html">3. Preparation of the reference sequence</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Alignment of the reads to the reference sequence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#alignment-of-pre-processed-reads-with-bwa-aln">4.1. Alignment of pre-processed reads with BWA-aln</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#converting-sam-file-to-bam-file">4.2. Converting sam file to bam file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting-and-indexing-the-bam-file">4.3. Sorting and indexing the bam file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-read-group-tags-and-indexing-bam-files">4.4. Adding Read Group tags and indexing bam files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#marking-and-removing-duplicates">4.5. Marking and removing duplicates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-realignment-of-reads">4.6. Local realignment of reads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-flagstat-file">4.7. Generate flagstat file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization-of-reads-alignment">4.8. Visualization of reads alignment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SummaryReports.html">5. Create Summary Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DamageAnalysis.html">6. Damage analysis and quality rescaling of the BAM file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VariantsCall.html">7. Variant calling and visualization</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Archaeogenetics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. Alignment of the reads to the reference sequence</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ReadsMapping_v2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="alignment-of-the-reads-to-the-reference-sequence">
+<h1>4. Alignment of the reads to the reference sequence<a class="headerlink" href="#alignment-of-the-reads-to-the-reference-sequence" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="alignment-of-pre-processed-reads-with-bwa-aln">
+<h2>4.1. Alignment of pre-processed reads with BWA-aln<a class="headerlink" href="#alignment-of-pre-processed-reads-with-bwa-aln" title="Permalink to this headline">¶</a></h2>
+<p>We are going to use the <em>BWA aln</em> algorithm. BWA-aln supports an end-to-end alignemnt of reads to the reference sequence, whereas the alternative algorithm, BWA-mem supports also local (portion of the reads) and chimeric alignments (then producing a larger number of reads mapped than aln). BWA-aln is more suitable for aliging short reads, like expected for ancient DNA samples. The following comand will generate a .sai file for downstream analysis and a .log file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bwa</span> <span class="n">aln</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">n</span> <span class="mf">0.1</span> <span class="o">-</span><span class="n">l</span> <span class="mi">1000</span> <span class="o">&gt;</span> <span class="n">filename</span><span class="o">.</span><span class="n">sai</span>
+</pre></div>
+</div>
+<p>Some of the options available in BWA-aln:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Function</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>-n</em> &lt;number&gt;</td>
+<td>maximum edit distance if the value is an <em>integer</em>. If the value is <em>float</em> the edit distance is automatically chosen for different read lengths.</td>
+</tr>
+<tr class="row-odd"><td><em>-l</em> &lt;integer&gt;</td>
+<td>seed length. If the value is larger than the query sequence, seeding will be disabled.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Due to the particular damaged nature of ancient DNA molecules, carrying deaminations and the molecules ends, we deactivate the <strong>seed-length</strong> option (-l) by giving it a high value (e.g. 1000).</li>
+<li>Here we are aligning reads to a bacterial reference genome. To reduce the impact of spurious alignemnts due to presence bacterial species closely related to the one that we are investigating, we will adopt stringent conditions by decreasing the <strong>maximum edit distance</strong> option (-n 0.1). For alignment of DNA reads to the human reference sequence, less stringent conditions can be used (-n 0.01).</li>
+</ul>
+</div>
+<p>Once obtained the sai file, we align the reads (fastq file) to the reference (fasta file) using <strong>bwa samse</strong>, to generate the alignment file (sam) and a log file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bwa</span> <span class="n">samse</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="n">filename</span><span class="o">.</span><span class="n">sai</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">f</span> <span class="n">filename</span><span class="o">.</span><span class="n">sam</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="converting-sam-file-to-bam-file">
+<h2>4.2. Converting sam file to bam file<a class="headerlink" href="#converting-sam-file-to-bam-file" title="Permalink to this headline">¶</a></h2>
+<p>For the downstream analyses we will work with the binary (more compact) version of the sam file. To convert the sam file in ban we will use <strong>samtools view</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">Sb</span> <span class="n">filename</span><span class="o">.</span><span class="n">sam</span> <span class="o">&gt;</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>The conversion from sam to bam can be piped (|) in one command to the alignment step as follows::</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bwa</span> <span class="n">samse</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="n">filename</span><span class="o">.</span><span class="n">sai</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">Sb</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+</div>
+<p>To view the content of a sam file we can just use standart commands like <strong>head</strong>, <strong>tail</strong>, <strong>less</strong>. BUT, to view the content of a bam file (binary format of sam) we have to use <strong>samtools view</strong>. For example, to display on the screen one read/line (scrolling with the spacebar):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">less</span> <span class="o">-</span><span class="n">S</span>
+</pre></div>
+</div>
+<p>while to display just the header of the bam file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">H</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sorting-and-indexing-the-bam-file">
+<h2>4.3. Sorting and indexing the bam file<a class="headerlink" href="#sorting-and-indexing-the-bam-file" title="Permalink to this headline">¶</a></h2>
+<p>To go on with the analysis, we have to sort the reads aligned in the bam file by leftmost coordinates (or by read name when the option -n is used) with <strong>samtools sort</strong>. The option -o is used to provide an output file name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">sort</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">o</span> <span class="n">filename</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+<p>The sorted bam files are then indexed with <strong>samtools index</strong>. Indexes allow other programs to retrieve specific parts of the bam file without reading through all of the sequences. The following command generates a <strong>.bai</strong> file, a companion file of the bam which contains the indexes::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">index</span> <span class="n">filename</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-read-group-tags-and-indexing-bam-files">
+<h2>4.4. Adding Read Group tags and indexing bam files<a class="headerlink" href="#adding-read-group-tags-and-indexing-bam-files" title="Permalink to this headline">¶</a></h2>
+<p>A number of predefined tags may be appropriately assigned to specific set of reads in order to distinguish samples, libraries and other technical features. You may want to use RGLB (library ID) and RGSM (sample ID) tags at your own convenience.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">picard</span> <span class="n">AddOrReplaceReadGroups</span> <span class="n">INPUT</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span> <span class="n">OUTPUT</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">RG</span><span class="o">.</span><span class="n">bam</span> <span class="n">RGID</span><span class="o">=</span><span class="n">rg_id</span> <span class="n">RGLB</span><span class="o">=</span><span class="n">lib_id</span> <span class="n">RGPL</span><span class="o">=</span><span class="n">platform</span> <span class="n">RGPU</span><span class="o">=</span><span class="n">plat_unit</span> <span class="n">RGSM</span><span class="o">=</span><span class="n">sam_id</span> <span class="n">VALIDATION_STRINGENCY</span><span class="o">=</span><span class="n">LENIENT</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>In some instances Picard may stop running and return error messages due to conflicts with SAM specifications produced by bwa (e.g. “MAPQ should be 0 for unmapped reads”). To suppress this error and allow the Picard to continue, we pass the VALIDATION_STRINGENCY=LENIENT options (default is STRICT).</li>
+<li>Read Groups may be also added during the alignment with BWA using the option -R.</li>
+</ul>
+</div>
+<p>Once added the Read Group tags, we index again the bam file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">index</span> <span class="n">filename</span><span class="o">.</span><span class="n">RG</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="marking-and-removing-duplicates">
+<h2>4.5. Marking and removing duplicates<a class="headerlink" href="#marking-and-removing-duplicates" title="Permalink to this headline">¶</a></h2>
+<p>Amplification through PCR of genomic libraries leads to duplication formation, hence reads originating from a single fragment of DNA. The MarkDuplicates tool of Picard marks the reads as duplicates when the 5’-end positions of both reads and read-pairs match. A metric file with various statistics is created, and reads are removed from the bam file by using the REMOVE_DUPLICATES=True option (the default option is FALSE, which simply ‘marks’ duplicate reads keep them in the bam file).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">picard</span> <span class="n">MarkDuplicates</span> <span class="n">I</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">RG</span><span class="o">.</span><span class="n">bam</span> <span class="n">O</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">DR</span><span class="o">.</span><span class="n">bam</span> <span class="n">M</span><span class="o">=</span><span class="n">output_metrics</span><span class="o">.</span><span class="n">txt</span> <span class="n">REMOVE_DUPLICATES</span><span class="o">=</span><span class="kc">True</span> <span class="n">VALIDATION_STRINGENCY</span><span class="o">=</span><span class="n">LENIENT</span> <span class="o">&amp;&gt;</span> <span class="n">logFile</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>Once removed the duplicates, we index again the bam file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">index</span> <span class="n">filename</span><span class="o">.</span><span class="n">DR</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="local-realignment-of-reads">
+<h2>4.6. Local realignment of reads<a class="headerlink" href="#local-realignment-of-reads" title="Permalink to this headline">¶</a></h2>
+<p>The presence of insertions or deletions (indels) in the genome may be responsible of misalignments and bases mismatches that are easily mistaken as SNPs. For this reason, we locally realign reads to minimize the number of mispatches around the indels. The realignment process is done in two steps using two different tools of GATK called with the -T option. We first detect the intervals which need to be realigned with the <strong>GATK RealignerTargetCreator</strong>, and save the list of these intevals in a file that we name targets.interval:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="o">-</span><span class="n">T</span> <span class="n">RealignerTargetCreator</span> <span class="o">-</span><span class="n">R</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">I</span> <span class="n">filename</span><span class="o">.</span><span class="n">DR</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">o</span> <span class="n">targets</span><span class="o">.</span><span class="n">intervals</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>like Picard, in our server environment we can call gatk just by typing the program name. In other environments (including your laptop) you may have to call gatk by providing the full path to the java file (.jar) of gatk:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">GenomeAnalysisTK</span><span class="o">.</span><span class="n">jar</span> <span class="o">-</span><span class="n">T</span> <span class="n">RealignerTargetCreator</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+</div>
+<p>Then, we realign the reads over the intervals listed in the targets.intervals file (<em>-targetIntervals</em> option) with <strong>GATK IndelRealigner</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="o">-</span><span class="n">T</span> <span class="n">IndelRealigner</span> <span class="o">-</span><span class="n">R</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">I</span> <span class="n">filename</span><span class="o">.</span><span class="n">RG</span><span class="o">.</span><span class="n">DR</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">targetIntervals</span> <span class="n">targets</span><span class="o">.</span><span class="n">intervals</span> <span class="o">-</span><span class="n">o</span> <span class="n">filename</span><span class="o">.</span><span class="n">final</span><span class="o">.</span><span class="n">bam</span> <span class="o">--</span><span class="n">filter_bases_not_stored</span> <span class="o">&amp;&gt;</span> <span class="n">logFile</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>The final bam file has to be sorted and indexed as previously done:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">sort</span> <span class="n">filename</span><span class="o">.</span><span class="n">final</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">o</span> <span class="n">filename</span><span class="o">.</span><span class="n">final</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span>
+<span class="n">samtools</span> <span class="n">index</span> <span class="n">filename</span><span class="o">.</span><span class="n">final</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-flagstat-file">
+<h2>4.7. Generate flagstat file<a class="headerlink" href="#generate-flagstat-file" title="Permalink to this headline">¶</a></h2>
+<p>We can generate a file with useful information about our alignment with <strong>samtools flagstat</strong>. It represents a final summary report of the bitwise FLAG fields asigned to the reads in the sam file (to decode each FLAG field assigned to a read see <a class="reference external" href="https://broadinstitute.github.io/picard/explain-flags.html">https://broadinstitute.github.io/picard/explain-flags.html</a>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">flagstat</span> <span class="n">filename</span><span class="o">.</span><span class="n">final</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span> <span class="o">&gt;</span> <span class="n">flagstat_filename</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You could generate a flagstat file for the two bam files before and after refinement and see the differences.</p>
+</div>
+</div>
+<div class="section" id="visualization-of-reads-alignment">
+<h2>4.8. Visualization of reads alignment<a class="headerlink" href="#visualization-of-reads-alignment" title="Permalink to this headline">¶</a></h2>
+<p>Once generated the final bam file, let’s compare the bam files before and after the refinement and polishing process (duplicates removal, realignment around indels and sorting). To do so, we will use the program IGV, in which we will first load the reference fasta file from <em>Genomes –&gt; Load genome from file</em> and then we will add one (or more) bam files with <em>File –&gt; Load from file</em>:</p>
+<img alt="_images/igv-bam_bam.png" src="_images/igv-bam_bam.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SummaryReports.html" class="btn btn-neutral float-right" title="5. Create Summary Reports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="PreparationReference.html" class="btn btn-neutral float-left" title="3. Preparation of the reference sequence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Claudio Ottoni
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>
