@@ -68,7 +68,7 @@ exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
 # 'sphinx' produce command boxes in green while with 'default' they are grey.
-pygments_style = 'sphinx'
+pygments_style = 'default'
 
 
 # -- Options for HTML output -------------------------------------------------
