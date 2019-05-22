@@ -7,7 +7,7 @@
 Ancient DNA session
 ###################
 
-Welcome to the Ancient DNA session of the advanced `course`_ "Archaeogenetics approaches to investigate domestication and evolution", CIBIO, Porto (20-24 May 2019). by Claudio Ottoni (Sapienza University of Rome).
+Welcome to the Ancient DNA session of the advanced `course`_ "Archaeogenetics approaches to investigate domestication and evolution", CIBIO, Porto (20-24 May 2019), by Claudio Ottoni (Sapienza University of Rome).
 
   .. _course: https://cibio.up.pt/workshops--courses/details/advanced-course-archaeogenetics-approaches-to-investigate-domestication-and-evolution
 
