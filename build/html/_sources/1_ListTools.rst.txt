@@ -4,17 +4,7 @@ List of Tools
 
 Data preprocessing
   * AdapterRemoval: https://github.com/MikkelSchubert/adapterremoval
-
-  .. note::
-  
-    Other tools used for fastq files pre-processing: `ClipAndMerge`_, `leeHom`_, `Atropos`_, `fastp`_
-    
-    .. _ClipAndMerge: https://github.com/apeltzer/ClipAndMerge
-    .. _leeHom: https://github.com/grenaud/leeHom
-    .. _Atropos: https://github.com/jdidion/atropos
-    .. _fastp: https://github.com/OpenGene/fastp
-    
-    
+        
 Reads alignment and variants calling
   * bwa: https://github.com/lh3/bwa
   * gatk: https://software.broadinstitute.org/gatk/ 

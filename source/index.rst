@@ -3,11 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-####################################
-Archaeogenetics: ancient DNA session
-####################################
+###################
+Ancient DNA session
+###################
 
-This step-by-step tutorial was used during the Archaeogenetics course in Porto 20-24 May 2019.
+Welcome to the Ancient DNA session of the advanced `course`_ "Archaeogenetics approaches to investigate domestication and evolution", CIBIO, Porto (20-24 May 2019). by Claudio Ottoni (Sapienza University of Rome).
+
+  .. _course: https://cibio.up.pt/workshops--courses/details/advanced-course-archaeogenetics-approaches-to-investigate-domestication-and-evolution
 
 ********
 Contents
@@ -17,13 +19,13 @@ Contents
    :maxdepth: 2
    :numbered:
    
-   ListTools
-   ReadsFiltering
-   PreparationReference
-   ReadsMapping_v2
-   SummaryReports
-   DamageAnalysis
-   VariantsCall
+   1_ListTools
+   2_ReadsFiltering
+   3_PreparationReference
+   4_ReadsMapping_v2
+   5_SummaryReports
+   6_DamageAnalysis
+   7_VariantsCall
 
 
 * :ref:`genindex`

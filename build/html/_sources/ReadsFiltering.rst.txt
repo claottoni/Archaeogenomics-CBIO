@@ -28,7 +28,7 @@ Reads quality filtering
 Reads filtering is a crucial step as it will affect all downstream analyses. One of the important things to do is to trim the adapters that were used during the library preparation . For this step we will use the program **AdapterRemoval**, which performs adapter trimming of sequencing reads and subsequent merging of paired-end reads with negative insert sizes (an overlap between two sequencing reads derived from a single DNA fragment) into a single collapsed read:
 ::
 
-  AdapterRemoval --file1 filename_R1.fastq --file2 filename_R2.fastq --basename filename --minlength 30 --trimns --trimqualities --collapse --gzip
+  AdapterRemoval --file1 filename_R1.fastq --file2 filename_R2.fastq --basename filename --minlength 30 --trimns --minquality 15 --trimqualities --collapse --gzip
 
 Here some useful options of AdapterRemoval:
 

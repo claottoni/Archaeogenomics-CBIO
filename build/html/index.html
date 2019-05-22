@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Archaeogenetics: ancient DNA session &mdash; Archaeogenetics 0.0.1 documentation</title>
+  <title>Ancient DNA session &mdash; Archaeogenetics in Porto 0.0.1 documentation</title>
   
 
   
@@ -44,7 +44,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. List of Tools" href="ListTools.html" /> 
+    <link rel="next" title="1. List of Tools" href="1_ListTools.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -58,7 +58,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> Archaeogenetics
+            <a href="#" class="icon icon-home"> Archaeogenetics in Porto
           
 
           
@@ -89,13 +89,13 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="ListTools.html">1. List of Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ReadsFiltering.html">2. Quality filtering of reads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PreparationReference.html">3. Preparation of the reference sequence</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ReadsMapping_v2.html">4. Alignment of the reads to the reference sequence</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SummaryReports.html">5. Create Summary Reports</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DamageAnalysis.html">6. Damage analysis and quality rescaling of the BAM file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VariantsCall.html">7. Variant calling and visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_ListTools.html">1. List of Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_ReadsFiltering.html">2. Quality filtering of reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_PreparationReference.html">3. Preparation of the reference sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_ReadsMapping_v2.html">4. Alignment of the reads to the reference sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_SummaryReports.html">5. Create Summary Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_DamageAnalysis.html">6. Damage analysis and quality rescaling of the BAM file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_VariantsCall.html">7. Variant calling and visualization</a></li>
 </ul>
 
             
@@ -110,7 +110,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Archaeogenetics</a>
+          <a href="#">Archaeogenetics in Porto</a>
         
       </nav>
 
@@ -141,7 +141,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Archaeogenetics: ancient DNA session</li>
+      <li>Ancient DNA session</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -160,41 +160,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="archaeogenetics-ancient-dna-session">
-<h1>Archaeogenetics: ancient DNA session<a class="headerlink" href="#archaeogenetics-ancient-dna-session" title="Permalink to this headline">¶</a></h1>
-<p>This step-by-step tutorial was used during the Archaeogenetics course in Porto 20-24 May 2019.</p>
+  <div class="section" id="ancient-dna-session">
+<h1>Ancient DNA session<a class="headerlink" href="#ancient-dna-session" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the Ancient DNA session of the advanced <a class="reference external" href="https://cibio.up.pt/workshops--courses/details/advanced-course-archaeogenetics-approaches-to-investigate-domestication-and-evolution">course</a> “Archaeogenetics approaches to investigate domestication and evolution”, CIBIO, Porto (20-24 May 2019). by Claudio Ottoni (Sapienza University of Rome).</p>
+<blockquote>
+<div></div></blockquote>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ListTools.html">1. List of Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ReadsFiltering.html">2. Quality filtering of reads</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ReadsFiltering.html#reads-quality-control">2.1. Reads quality control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsFiltering.html#reads-quality-filtering">2.2. Reads quality filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_ListTools.html">1. List of Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_ReadsFiltering.html">2. Quality filtering of reads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_ReadsFiltering.html#reads-quality-control">2.1. Reads quality control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_ReadsFiltering.html#reads-quality-filtering">2.2. Reads quality filtering</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="PreparationReference.html">3. Preparation of the reference sequence</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="PreparationReference.html#index-the-reference-sequence-with-bwa">3.1. Index the reference sequence with bwa</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PreparationReference.html#create-a-reference-dictionary">3.2. Create a reference dictionary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PreparationReference.html#index-the-reference-sequence-with-samtools">3.3. Index the reference sequence with samtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_PreparationReference.html">3. Preparation of the reference sequence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_PreparationReference.html#index-the-reference-sequence-with-bwa">3.1. Index the reference sequence with BWA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_PreparationReference.html#create-a-reference-dictionary">3.2. Create a reference dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_PreparationReference.html#index-the-reference-sequence-with-samtools">3.3. Index the reference sequence with Samtools</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ReadsMapping_v2.html">4. Alignment of the reads to the reference sequence</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#alignment-of-pre-processed-reads-with-bwa-aln">4.1. Alignment of pre-processed reads with BWA-aln</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#converting-sam-file-to-bam-file">4.2. Converting sam file to bam file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#sorting-and-indexing-the-bam-file">4.3. Sorting and indexing the bam file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#adding-read-group-tags-and-indexing-bam-files">4.4. Adding Read Group tags and indexing bam files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#marking-and-removing-duplicates">4.5. Marking and removing duplicates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#local-realignment-of-reads">4.6. Local realignment of reads</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#generate-flagstat-file">4.7. Generate flagstat file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadsMapping_v2.html#visualization-of-reads-alignment">4.8. Visualization of reads alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_ReadsMapping_v2.html">4. Alignment of the reads to the reference sequence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#alignment-of-pre-processed-reads-to-the-reference-genome-with-bwa-aln">4.1. Alignment of pre-processed reads to the reference genome with BWA aln</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#converting-sam-file-to-bam-file">4.2. Converting sam file to bam file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#sorting-and-indexing-the-bam-file">4.3. Sorting and indexing the bam file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#adding-read-group-tags-and-indexing-bam-files">4.4. Adding Read Group tags and indexing bam files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#marking-and-removing-duplicates">4.5. Marking and removing duplicates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#local-realignment-of-reads">4.6. Local realignment of reads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#generate-flagstat-file">4.7. Generate flagstat file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_ReadsMapping_v2.html#visualization-of-reads-alignment">4.8. Visualization of reads alignment</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="SummaryReports.html">5. Create Summary Reports</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DamageAnalysis.html">6. Damage analysis and quality rescaling of the BAM file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VariantsCall.html">7. Variant calling and visualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="VariantsCall.html#variants-calling">7.1. Variants calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VariantsCall.html#variants-visualization">7.2. Variants visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_SummaryReports.html">5. Create Summary Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_DamageAnalysis.html">6. Damage analysis and quality rescaling of the BAM file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_VariantsCall.html">7. Variant calling and visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="7_VariantsCall.html#variants-calling">7.1. Variants calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_VariantsCall.html#variants-visualization">7.2. Variants visualization</a></li>
 </ul>
 </li>
 </ul>
@@ -215,7 +217,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ListTools.html" class="btn btn-neutral float-right" title="1. List of Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="1_ListTools.html" class="btn btn-neutral float-right" title="1. List of Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

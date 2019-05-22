@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Archaeogenetics'
+project = 'Archaeogenetics in Porto'
 copyright = '2019, Claudio Ottoni'
 author = 'Claudio Ottoni'
 
@@ -67,7 +67,8 @@ language = None
 exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'default'
+# 'sphinx' produce command boxes in green while with 'default' they are grey.
+pygments_style = 'sphinx'
 
 
 # -- Options for HTML output -------------------------------------------------

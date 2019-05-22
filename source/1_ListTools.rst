@@ -4,11 +4,7 @@ List of Tools
 
 Data preprocessing
   * AdapterRemoval: https://github.com/MikkelSchubert/adapterremoval
-
-  .. note::
-  
-    There are many tools for fastq files pre-processing that are also very efficient eg. ClipAndMerge, fastp, Atropos (from CutAdapt).
-
+        
 Reads alignment and variants calling
   * bwa: https://github.com/lh3/bwa
   * gatk: https://software.broadinstitute.org/gatk/ 

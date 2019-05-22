@@ -6,12 +6,12 @@ Alignment of the reads to the reference sequence
 Alignment of pre-processed reads with BWA-aln
 *********************************************
 
-We are going to use the *BWA aln* algorithm. BWA-aln supports an end-to-end alignemnt of reads to the reference sequence, whereas the alternative algorithm, BWA-mem supports also local (portion of the reads) and chimeric alignments (then producing a larger number of reads mapped than aln). BWA-aln is more suitable for aliging short reads, like expected for ancient DNA samples. The following comand will generate a .sai file for downstream analysis and a .log file.
+We are going to use the ``BWA aln`` algorithm. ``BWA aln`` supports an end-to-end alignemnt of reads to the reference sequence, whereas the alternative algorithm, ``BWA mem`` supports also local (portion of the reads) and chimeric alignments (then producing a larger number of reads mapped than aln). ``BWA aln`` is more suitable for aliging short reads, like expected for ancient DNA samples. The following comand will generate a ``.sai`` file for downstream analysis and a ``.log`` file.
 ::
 
   bwa aln reference.fasta filename.fastq.gz -n 0.1 -l 1000 > filename.sai
 
-Some of the options available in BWA-aln: 
+Some of the options available in ``BWA aln``: 
 
 ============== ========
 Option         Function
@@ -22,10 +22,10 @@ Option         Function
 
 .. note::
 
-  - Due to the particular damaged nature of ancient DNA molecules, carrying deaminations and the molecules ends, we deactivate the **seed-length** option (-l) by giving it a high value (e.g. 1000). 
-  - Here we are aligning reads to a bacterial reference genome. To reduce the impact of spurious alignemnts due to presence bacterial species closely related to the one that we are investigating, we will adopt stringent conditions by decreasing the **maximum edit distance** option (-n 0.1). For alignment of DNA reads to the human reference sequence, less stringent conditions can be used (-n 0.01). 
+  - Due to the particular damaged nature of ancient DNA molecules, carrying deaminations and the molecules ends, we deactivate the **seed-length** option ``-l`` by giving it a high value (e.g. 1000). 
+  - Here we are aligning reads to a bacterial reference genome. To reduce the impact of spurious alignemnts due to presence bacterial species closely related to the one that we are investigating, we will adopt stringent conditions by decreasing the **maximum edit distance** option (``-n 0.1``). For alignment of DNA reads to the human reference sequence, less stringent conditions can be used (``-n 0.01``). 
 
-Once obtained the sai file, we align the reads (fastq file) to the reference (fasta file) using **bwa samse**, to generate the alignment file (sam) and a log file.
+Once obtained the sai file, we align the reads (``fastq`` file) to the reference (``fasta`` file) using ``bwa samse``, to generate the alignment file ``sam`` and a ``log`` file.
 ::
 
   bwa samse reference.fasta filename.sai filename.fastq.gz -f filename.sam
@@ -35,18 +35,18 @@ Once obtained the sai file, we align the reads (fastq file) to the reference (fa
 Converting sam file to bam file
 *******************************
 
-For the downstream analyses we will work with the binary (more compact) version of the sam file. To convert the sam file in ban we will use **samtools view**. 
+For the downstream analyses we will work with the binary (more compact) version of the sam file. To convert the sam file in ban we will use ``samtools view``. 
 ::
 
   samtools view -Sb filename.sam > filename.bam
 
 .. tip::
 
-  The conversion from sam to bam can be piped (|) in one command to the alignment step as follows:::
+  The conversion from sam to bam can be piped (``|``) in one command to the alignment step as follows:::
 
     bwa samse reference.fasta filename.sai filename.fastq.gz | samtools view -Sb - > filename.bam
 
-To view the content of a sam file we can just use standart commands like **head**, **tail**, **less**. BUT, to view the content of a bam file (binary format of sam) we have to use **samtools view**. For example, to display on the screen one read/line (scrolling with the spacebar):
+To view the content of a sam file we can just use standard commands like ``head``, ``tail``, ``less``. BUT, to view the content of a bam file (binary format of sam) we have to use **samtools view**. For example, to display on the screen one read/line (scrolling with the spacebar):
 ::
 
   samtools view filename.bam | less -S
@@ -60,12 +60,12 @@ while to display just the header of the bam file:
 Sorting and indexing the bam file
 *********************************
 
-To go on with the analysis, we have to sort the reads aligned in the bam file by leftmost coordinates (or by read name when the option -n is used) with **samtools sort**. The option -o is used to provide an output file name:
+To go on with the analysis, we have to sort the reads aligned in the bam file by leftmost coordinates (or by read name when the option -n is used) with ``samtools sort``. The option ``-o`` is used to provide an output file name:
 ::
 
   samtools sort filename.bam -o filename.sort.bam
 
-The sorted bam files are then indexed with **samtools index**. Indexes allow other programs to retrieve specific parts of the bam file without reading through all of the sequences. The following command generates a **.bai** file, a companion file of the bam which contains the indexes:::
+The sorted bam files are then indexed with ``samtools index``. Indexes allow other programs to retrieve specific parts of the bam file without reading through all of the sequences. The following command generates a **.bai** file, a companion file of the bam which contains the indexes:::
 
   samtools index filename.sort.bam
 
@@ -73,7 +73,7 @@ The sorted bam files are then indexed with **samtools index**. Indexes allow oth
 Adding Read Group tags and indexing bam files
 *********************************************
 
-A number of predefined tags may be appropriately assigned to specific set of reads in order to distinguish samples, libraries and other technical features. You may want to use RGLB (library ID) and RGSM (sample ID) tags at your own convenience.
+A number of predefined tags may be appropriately assigned to specific set of reads in order to distinguish samples, libraries and other technical features. You may want to use ``RGLB`` (library ID) and ``RGSM`` (sample ID) tags at your own convenience.
 ::
 
   picard AddOrReplaceReadGroups INPUT=filename.sort.bam OUTPUT=filename.RG.bam RGID=rg_id RGLB=lib_id RGPL=platform RGPU=plat_unit RGSM=sam_id VALIDATION_STRINGENCY=LENIENT

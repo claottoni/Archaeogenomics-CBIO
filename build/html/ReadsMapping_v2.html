@@ -175,11 +175,11 @@
 <h1>4. Alignment of the reads to the reference sequence<a class="headerlink" href="#alignment-of-the-reads-to-the-reference-sequence" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="alignment-of-pre-processed-reads-with-bwa-aln">
 <h2>4.1. Alignment of pre-processed reads with BWA-aln<a class="headerlink" href="#alignment-of-pre-processed-reads-with-bwa-aln" title="Permalink to this headline">¶</a></h2>
-<p>We are going to use the <em>BWA aln</em> algorithm. BWA-aln supports an end-to-end alignemnt of reads to the reference sequence, whereas the alternative algorithm, BWA-mem supports also local (portion of the reads) and chimeric alignments (then producing a larger number of reads mapped than aln). BWA-aln is more suitable for aliging short reads, like expected for ancient DNA samples. The following comand will generate a .sai file for downstream analysis and a .log file.</p>
+<p>We are going to use the <code class="docutils literal notranslate"><span class="pre">BWA</span> <span class="pre">aln</span></code> algorithm. <code class="docutils literal notranslate"><span class="pre">BWA</span> <span class="pre">aln</span></code> supports an end-to-end alignemnt of reads to the reference sequence, whereas the alternative algorithm, <code class="docutils literal notranslate"><span class="pre">BWA</span> <span class="pre">mem</span></code> supports also local (portion of the reads) and chimeric alignments (then producing a larger number of reads mapped than aln). <code class="docutils literal notranslate"><span class="pre">BWA</span> <span class="pre">aln</span></code> is more suitable for aliging short reads, like expected for ancient DNA samples. The following comand will generate a <code class="docutils literal notranslate"><span class="pre">.sai</span></code> file for downstream analysis and a <code class="docutils literal notranslate"><span class="pre">.log</span></code> file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bwa</span> <span class="n">aln</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">n</span> <span class="mf">0.1</span> <span class="o">-</span><span class="n">l</span> <span class="mi">1000</span> <span class="o">&gt;</span> <span class="n">filename</span><span class="o">.</span><span class="n">sai</span>
 </pre></div>
 </div>
-<p>Some of the options available in BWA-aln:</p>
+<p>Some of the options available in <code class="docutils literal notranslate"><span class="pre">BWA</span> <span class="pre">aln</span></code>:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="9%" />
@@ -202,29 +202,29 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
-<li>Due to the particular damaged nature of ancient DNA molecules, carrying deaminations and the molecules ends, we deactivate the <strong>seed-length</strong> option (-l) by giving it a high value (e.g. 1000).</li>
-<li>Here we are aligning reads to a bacterial reference genome. To reduce the impact of spurious alignemnts due to presence bacterial species closely related to the one that we are investigating, we will adopt stringent conditions by decreasing the <strong>maximum edit distance</strong> option (-n 0.1). For alignment of DNA reads to the human reference sequence, less stringent conditions can be used (-n 0.01).</li>
+<li>Due to the particular damaged nature of ancient DNA molecules, carrying deaminations and the molecules ends, we deactivate the <strong>seed-length</strong> option <code class="docutils literal notranslate"><span class="pre">-l</span></code> by giving it a high value (e.g. 1000).</li>
+<li>Here we are aligning reads to a bacterial reference genome. To reduce the impact of spurious alignemnts due to presence bacterial species closely related to the one that we are investigating, we will adopt stringent conditions by decreasing the <strong>maximum edit distance</strong> option (<code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">0.1</span></code>). For alignment of DNA reads to the human reference sequence, less stringent conditions can be used (<code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">0.01</span></code>).</li>
 </ul>
 </div>
-<p>Once obtained the sai file, we align the reads (fastq file) to the reference (fasta file) using <strong>bwa samse</strong>, to generate the alignment file (sam) and a log file.</p>
+<p>Once obtained the sai file, we align the reads (<code class="docutils literal notranslate"><span class="pre">fastq</span></code> file) to the reference (<code class="docutils literal notranslate"><span class="pre">fasta</span></code> file) using <code class="docutils literal notranslate"><span class="pre">bwa</span> <span class="pre">samse</span></code>, to generate the alignment file <code class="docutils literal notranslate"><span class="pre">sam</span></code> and a <code class="docutils literal notranslate"><span class="pre">log</span></code> file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bwa</span> <span class="n">samse</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="n">filename</span><span class="o">.</span><span class="n">sai</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">-</span><span class="n">f</span> <span class="n">filename</span><span class="o">.</span><span class="n">sam</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="converting-sam-file-to-bam-file">
 <h2>4.2. Converting sam file to bam file<a class="headerlink" href="#converting-sam-file-to-bam-file" title="Permalink to this headline">¶</a></h2>
-<p>For the downstream analyses we will work with the binary (more compact) version of the sam file. To convert the sam file in ban we will use <strong>samtools view</strong>.</p>
+<p>For the downstream analyses we will work with the binary (more compact) version of the sam file. To convert the sam file in ban we will use <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">view</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">Sb</span> <span class="n">filename</span><span class="o">.</span><span class="n">sam</span> <span class="o">&gt;</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p>The conversion from sam to bam can be piped (|) in one command to the alignment step as follows::</p>
+<p>The conversion from sam to bam can be piped (<code class="docutils literal notranslate"><span class="pre">|</span></code>) in one command to the alignment step as follows::</p>
 <div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bwa</span> <span class="n">samse</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span> <span class="n">filename</span><span class="o">.</span><span class="n">sai</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">samtools</span> <span class="n">view</span> <span class="o">-</span><span class="n">Sb</span> <span class="o">-</span> <span class="o">&gt;</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 </div>
-<p>To view the content of a sam file we can just use standart commands like <strong>head</strong>, <strong>tail</strong>, <strong>less</strong>. BUT, to view the content of a bam file (binary format of sam) we have to use <strong>samtools view</strong>. For example, to display on the screen one read/line (scrolling with the spacebar):</p>
+<p>To view the content of a sam file we can just use standard commands like <code class="docutils literal notranslate"><span class="pre">head</span></code>, <code class="docutils literal notranslate"><span class="pre">tail</span></code>, <code class="docutils literal notranslate"><span class="pre">less</span></code>. BUT, to view the content of a bam file (binary format of sam) we have to use <strong>samtools view</strong>. For example, to display on the screen one read/line (scrolling with the spacebar):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span> <span class="o">|</span> <span class="n">less</span> <span class="o">-</span><span class="n">S</span>
 </pre></div>
 </div>
@@ -235,18 +235,18 @@
 </div>
 <div class="section" id="sorting-and-indexing-the-bam-file">
 <h2>4.3. Sorting and indexing the bam file<a class="headerlink" href="#sorting-and-indexing-the-bam-file" title="Permalink to this headline">¶</a></h2>
-<p>To go on with the analysis, we have to sort the reads aligned in the bam file by leftmost coordinates (or by read name when the option -n is used) with <strong>samtools sort</strong>. The option -o is used to provide an output file name:</p>
+<p>To go on with the analysis, we have to sort the reads aligned in the bam file by leftmost coordinates (or by read name when the option -n is used) with <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">sort</span></code>. The option <code class="docutils literal notranslate"><span class="pre">-o</span></code> is used to provide an output file name:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">sort</span> <span class="n">filename</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">o</span> <span class="n">filename</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
-<p>The sorted bam files are then indexed with <strong>samtools index</strong>. Indexes allow other programs to retrieve specific parts of the bam file without reading through all of the sequences. The following command generates a <strong>.bai</strong> file, a companion file of the bam which contains the indexes::</p>
+<p>The sorted bam files are then indexed with <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">index</span></code>. Indexes allow other programs to retrieve specific parts of the bam file without reading through all of the sequences. The following command generates a <strong>.bai</strong> file, a companion file of the bam which contains the indexes::</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">index</span> <span class="n">filename</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="adding-read-group-tags-and-indexing-bam-files">
 <h2>4.4. Adding Read Group tags and indexing bam files<a class="headerlink" href="#adding-read-group-tags-and-indexing-bam-files" title="Permalink to this headline">¶</a></h2>
-<p>A number of predefined tags may be appropriately assigned to specific set of reads in order to distinguish samples, libraries and other technical features. You may want to use RGLB (library ID) and RGSM (sample ID) tags at your own convenience.</p>
+<p>A number of predefined tags may be appropriately assigned to specific set of reads in order to distinguish samples, libraries and other technical features. You may want to use <code class="docutils literal notranslate"><span class="pre">RGLB</span></code> (library ID) and <code class="docutils literal notranslate"><span class="pre">RGSM</span></code> (sample ID) tags at your own convenience.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">picard</span> <span class="n">AddOrReplaceReadGroups</span> <span class="n">INPUT</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span> <span class="n">OUTPUT</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">RG</span><span class="o">.</span><span class="n">bam</span> <span class="n">RGID</span><span class="o">=</span><span class="n">rg_id</span> <span class="n">RGLB</span><span class="o">=</span><span class="n">lib_id</span> <span class="n">RGPL</span><span class="o">=</span><span class="n">platform</span> <span class="n">RGPU</span><span class="o">=</span><span class="n">plat_unit</span> <span class="n">RGSM</span><span class="o">=</span><span class="n">sam_id</span> <span class="n">VALIDATION_STRINGENCY</span><span class="o">=</span><span class="n">LENIENT</span>
 </pre></div>
 </div>
