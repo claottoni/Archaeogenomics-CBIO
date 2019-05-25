@@ -11,7 +11,7 @@ Variants calling
 We will use two common tools for variants calling: ``Samtools mpileup`` in combination with ``BCFtools``. 
 ::
 
-  samtools mpileup -B -ugf reference.fasta filename.final.sort.rescaled.bam | bcftools call -vmO u - > filename.vcf
+  samtools mpileup -B -ugf reference.fasta filename.final.sort.rescaled.bam | bcftools call -vmO v - > filename.vcf
 
 ================================= ========
 Samtools mpileup options          Function
@@ -36,7 +36,7 @@ BCFtools call options             Function
 The detected genetic variants will be stored in the ``vcf`` file. These genetic variations can be filtered according to some criteria using ``BCFtools``:
 ::
   
-  bcftools filter -O u -o filename.filtered.vcf -s LOWQUAL -i'%QUAL>19' filename.vcf
+  bcftools filter -O v -o filename.filtered.vcf -s LOWQUAL -i'%QUAL>19' filename.vcf
 
 ==================================== ========
 BCFtools filter options              Function
