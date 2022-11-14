@@ -34,10 +34,14 @@ A dictionary file (``dict``) is necessary to run later in the pipeline ``GATK Re
 
   picard CreateSequenceDictionary R= referece.fasta O= reference.dict
  
-.. note:: In our server environment we can call Picard just by typing the program name. In other environments (including your laptop) you may have to call Picard by providing the full path to the java file ``jar`` of the program:
+.. note:: 
+
+  In our server environment we can call Picard just by typing the program name. In other environments (including your laptop) you may have to call Picard by providing the full path to the java file ``jar`` of the program:
    
-   ::
-     java -jar /path/to/picard.jar CreateSequenceDictionary R= referece.fasta O= ref.dict
+  ::
+     
+    java -jar /path/to/picard.jar CreateSequenceDictionary R= referece.fasta O= ref.dict
+
 
 ******************************************
 Index the reference sequence with Samtools
