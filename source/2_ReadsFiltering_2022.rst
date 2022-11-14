@@ -75,13 +75,14 @@ Reads quality filtering
 
 Reads filtering is a crucial step as it will affect all downstream analyses. One of the important things to do is to trim the adapters that were used during the preparation of the genomic libraries.
 For this step we will use the program `AdapterRemoval`_, which performs adapter trimming of sequencing reads and subsequent merging (collapse) of paired-end reads with negative insert sizes (an overlap between two sequencing reads derived from a single DNA fragment) into a single collapsed read.
-We will analyse the DNA sequences of an ancient sample sequenced in **single-end**. With this command, the trimmed reads are written to ``output_single.truncated.gz``, the discarded FASTQ reads are written to ``output_single.discarded.gz``, and settings and summary statistics are written to ``output_single.settings``.
+We will analyse the DNA sequences of an ancient cat sample sequenced in **paired-end**. With this command, the trimmed reads are written to ``filename.collapsed.gz``. The merged reads are in the file ``filename.collapsed.gz``. The ``filename.collapsed.truncated.gz`` contains merged reads that have been trimmed due to the **--trimns** or **--trimqualities** options. The files ``filename.pair1.truncated.gz`` and ``filename.pair2.truncated.gz`` contain trimmed pairs of reads which were not collapsed, ``filename_paired.singleton.truncated`` contains reads where one mate was discarded.
+Finally, the ``filename_paired.discarded`` and ``filename_paired.settings`` files correspond to those of the single-end run.
 
   .. _AdapterRemoval: https://github.com/MikkelSchubert/adapterremoval
 
 ::
 
-  AdapterRemoval --file1 filename_R1.fastq --file2 filename_R2.fastq --basename filename --minlength 30 --trimns --minquality 15 --trimqualities --collapse --gzip
+  AdapterRemoval --file1 FX-AN-PETR06_1.5M.fastq.gz --file2 FX-AN-PETR06_2.5M.fastq.gz --basename FX-AN-PETR06 --minlength 30 --trimns --minquality 15 --trimqualities --collapse --gzip
 
 Here some of the options of ``AdapterRemoval``:
 
