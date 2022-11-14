@@ -8,7 +8,10 @@ Once the reads are aligned and the data authenticated through *post-mortem* dama
 Variants calling
 ****************
 
-We will use two common tools for variants calling: ``Samtools mpileup`` in combination with ``BCFtools``. 
+We will use two common tools for variants calling: Samtools, in particular ``samtools mpileup``, in combination with ``bcftools call`` of the program `BCFtools`_. 
+
+  .. _BCFtools: http://www.htslib.org/
+
 ::
 
   samtools mpileup -B -ugf reference.fasta filename.final.sort.rescaled.bam | bcftools call -vmO v - > filename.vcf
@@ -33,7 +36,7 @@ BCFtools call options             Function
 
 
 
-The detected genetic variants will be stored in the ``vcf`` file. These genetic variations can be filtered according to some criteria using ``BCFtools``:
+The detected genetic variants will be stored in the ``vcf`` file. The genetic variants can be filtered according to some criteria using ``BCFtools``:
 ::
   
   bcftools filter -O v -o filename.filtered.vcf -s LOWQUAL -i'%QUAL>19' filename.vcf

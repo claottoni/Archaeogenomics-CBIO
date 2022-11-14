@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Quality filtering of reads &mdash; Archaeogenetics in Porto 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Preparation of the reference sequence" href="3_PreparationReference_2022.html" />
+    <link rel="prev" title="1. List of Tools" href="1_ListTools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Archaeogenetics in Porto
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_ListTools.html">1. List of Tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Quality filtering of reads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#copy-the-data">2.1. Copy the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reads-quality-control">2.2. Reads quality control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reads-quality-filtering">2.3. Reads quality filtering</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_PreparationReference_2022.html">3. Preparation of the reference sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_ReadsMapping_v2_2022.html">4. Alignment of the reads to the reference sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_SummaryReports.html">5. Create Summary Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_DamageAnalysis.html">6. Damage analysis and quality rescaling of the BAM file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_VariantsCall_2022.html">7. Variant calling and visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Archaeogenetics in Porto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><span class="section-number">2. </span>Quality filtering of reads</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2_ReadsFiltering_2022.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quality-filtering-of-reads">
+<h1><span class="section-number">2. </span>Quality filtering of reads<a class="headerlink" href="#quality-filtering-of-reads" title="Permalink to this headline"></a></h1>
+<section id="copy-the-data">
+<h2><span class="section-number">2.1. </span>Copy the data<a class="headerlink" href="#copy-the-data" title="Permalink to this headline"></a></h2>
+<p>First of all you have to copy the raw sequencing data (in <code class="docutils literal notranslate"><span class="pre">fastq</span></code> format) from the shared <code class="docutils literal notranslate"><span class="pre">data</span></code> folder into your <code class="docutils literal notranslate"><span class="pre">home</span></code>.
+After logging in the virtual machine you are in your <code class="docutils literal notranslate"><span class="pre">home</span></code>, to check you actual path use the command <code class="docutils literal notranslate"><span class="pre">pwd</span></code> (print work directory). Type this command every time you are not sure in which folder (path) you are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># print current path (directory)</span>
+<span class="n">pwd</span>
+</pre></div>
+</div>
+<p>Everywhere you are, to go back to your <code class="docutils literal notranslate"><span class="pre">home</span></code> just type <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># go back to your home</span>
+<span class="n">cd</span>
+</pre></div>
+</div>
+<p>Copy the fastq files from the shared folder inside the new folder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">course</span><span class="o">/</span><span class="n">day4_claudio</span><span class="o">/</span><span class="n">fastq</span> <span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="reads-quality-control">
+<h2><span class="section-number">2.2. </span>Reads quality control<a class="headerlink" href="#reads-quality-control" title="Permalink to this headline"></a></h2>
+<p>The reads generated by a sequencing platform are delivered in <code class="docutils literal notranslate"><span class="pre">fastq</span></code> format. The first step of the analysis of raw sequences is the quality-control.
+To do that, we will use <a class="reference external" href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a>, which provides a modular set of analyses that you can use to have a first impression of whether your data has any problems of which you should be aware before doing any further analysis.
+To run FastQC type the following command:</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastqc</span> <span class="n">filename</span><span class="o">.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>To analyze multiple <code class="docutils literal notranslate"><span class="pre">fastq</span></code> files you can run <code class="docutils literal notranslate"><span class="pre">FastQC</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastqc</span> <span class="o">*.</span><span class="n">fastq</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>At the end of the analysis, FastQC generates for each input file a summary report, like in the screenshot below:</p>
+<img alt="_images/fastqc.png" src="_images/fastqc.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>You can download the reports of FastQC (and any other file) in your laptop with the command <code class="docutils literal notranslate"><span class="pre">scp</span></code> (Secure Copy), which allows files to be copied to, from, or between different hosts. It uses ssh for data transfer and provides the same authentication and same level of security as ssh. For example, to copy from a remote host (our server) to your computer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="n">username</span><span class="nd">@remotehost</span><span class="p">:</span><span class="o">/</span><span class="n">full_path_to_file</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">directory</span>
+</pre></div>
+</div>
+</li>
+<li><p>To copy a folder you need to call the option <code class="docutils literal notranslate"><span class="pre">-r</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">r</span> <span class="n">username</span><span class="nd">@remotehost</span><span class="p">:</span><span class="o">/</span><span class="n">full_path_to_file</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">directory</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you are using a <code class="docutils literal notranslate"><span class="pre">pem</span></code> file to connect to the server, you have to use in order to download the files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">i</span> <span class="n">filename</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">r</span> <span class="n">username</span><span class="nd">@remotehost</span><span class="p">:</span><span class="o">/</span><span class="n">full_path_to_file</span> <span class="o">/</span><span class="n">some</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">directory</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="reads-quality-filtering">
+<h2><span class="section-number">2.3. </span>Reads quality filtering<a class="headerlink" href="#reads-quality-filtering" title="Permalink to this headline"></a></h2>
+<p>Reads filtering is a crucial step as it will affect all downstream analyses. One of the important things to do is to trim the adapters that were used during the preparation of the genomic libraries.
+For this step we will use the program <a class="reference external" href="https://github.com/MikkelSchubert/adapterremoval">AdapterRemoval</a>, which performs adapter trimming of sequencing reads and subsequent merging (collapse) of paired-end reads with negative insert sizes (an overlap between two sequencing reads derived from a single DNA fragment) into a single collapsed read.
+We will analyse the DNA sequences of an ancient sample sequenced in <strong>single-end</strong>. With this command, the trimmed reads are written to <code class="docutils literal notranslate"><span class="pre">output_single.truncated.gz</span></code>, the discarded FASTQ reads are written to <code class="docutils literal notranslate"><span class="pre">output_single.discarded.gz</span></code>, and settings and summary statistics are written to <code class="docutils literal notranslate"><span class="pre">output_single.settings</span></code>.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AdapterRemoval</span> <span class="o">--</span><span class="n">file1</span> <span class="n">filename_R1</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">file2</span> <span class="n">filename_R2</span><span class="o">.</span><span class="n">fastq</span> <span class="o">--</span><span class="n">basename</span> <span class="n">filename</span> <span class="o">--</span><span class="n">minlength</span> <span class="mi">30</span> <span class="o">--</span><span class="n">trimns</span> <span class="o">--</span><span class="n">minquality</span> <span class="mi">15</span> <span class="o">--</span><span class="n">trimqualities</span> <span class="o">--</span><span class="n">collapse</span> <span class="o">--</span><span class="n">gzip</span>
+</pre></div>
+</div>
+<p>Here some of the options of <code class="docutils literal notranslate"><span class="pre">AdapterRemoval</span></code>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>-file1</strong> <em>string</em></p></td>
+<td><p>Forward reads input file(s) in fastq(.gz) file format. Required option (single-end reads).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-file2</strong> <em>string</em></p></td>
+<td><p>Reverse reads input file(s) in fastq(.gz) file format.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–basename</strong> <em>string</em></p></td>
+<td><p>Default prefix for all output files for which no filename was explicitly set [current: your_output]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–adapter1</strong> <em>sequence</em></p></td>
+<td><p>Adapter sequence expected to be found in mate 1 reads [current: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNATCTCGTATGCCGTCTTCTGCTTG]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–adapter2</strong> <em>sequence</em></p></td>
+<td><p>Adapter sequence expected to be found in mate 2 reads [current: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–trimns</strong></p></td>
+<td><p>If set, trim ambiguous bases (N) at 5’/3’ termini [current: off]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–trimqualities</strong></p></td>
+<td><p>If set, trim bases at 5’/3’ termini with quality scores &lt;= to <strong>–minquality</strong> value [current: off]</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–minquality</strong> <em>integer</em></p></td>
+<td><p>PHRED inclusive minimum values; see <strong>–trimqualities</strong> for details [current: 2]</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–minlength</strong> <em>integer</em></p></td>
+<td><p>Reads shorter than this length are discarded following trimming [current: 15].</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–collapse</strong></p></td>
+<td><p>When set, paired ended read alignments of <strong>–minalignmentlength</strong> or more bases are combined into a single consensus sequence, representing the complete insert</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–minalignmentlength</strong> <em>integer</em></p></td>
+<td><p>If <strong>–collapse</strong> is set, paired reads must overlap at least this number of bases to be collapsed, and single-ended reads must overlap at least this number of bases with the adapter to be considered complete template molecules [current: 11].</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Several tools can be used for reads pre-processing and filtering, for example: <a class="reference external" href="https://github.com/apeltzer/ClipAndMerge">ClipAndMerge</a>, <a class="reference external" href="https://github.com/grenaud/leeHom">leeHom</a>, <a class="reference external" href="https://github.com/jdidion/atropos">Atropos</a>, <a class="reference external" href="https://github.com/OpenGene/fastp">fastp</a>.</p>
+<blockquote>
+<div></div></blockquote>
+</div>
+<p>After reads filtering open your adapter-trimmed <code class="docutils literal notranslate"><span class="pre">fastq</span></code> file again in <code class="docutils literal notranslate"><span class="pre">FastQC</span></code> and see the differences before (the two original paired-end reads files) and after (the collapsed reads file) adapter trimming.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1_ListTools.html" class="btn btn-neutral float-left" title="1. List of Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3_PreparationReference_2022.html" class="btn btn-neutral float-right" title="3. Preparation of the reference sequence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Claudio Ottoni.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-XXXXXXX-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

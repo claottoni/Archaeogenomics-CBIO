@@ -1,76 +1,33 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. Damage analysis and quality rescaling of the BAM file &mdash; Archaeogenetics in Porto 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
-              VERSION:'0.0.1',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Variant calling and visualization" href="7_VariantsCall.html" />
     <link rel="prev" title="5. Create Summary Reports" href="5_SummaryReports.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Archaeogenetics in Porto
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,17 +35,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_ListTools.html">1. List of Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_ReadsFiltering.html">2. Quality filtering of reads</a></li>
@@ -96,73 +43,34 @@
 <li class="toctree-l1"><a class="reference internal" href="4_ReadsMapping_v2.html">4. Alignment of the reads to the reference sequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_SummaryReports.html">5. Create Summary Reports</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">6. Damage analysis and quality rescaling of the BAM file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7_VariantsCall.html">7. Variant calling and visualization</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Archaeogenetics in Porto</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>6. Damage analysis and quality rescaling of the BAM file</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><span class="section-number">6. </span>Damage analysis and quality rescaling of the BAM file</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/6_DamageAnalysis.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="damage-analysis-and-quality-rescaling-of-the-bam-file">
-<h1>6. Damage analysis and quality rescaling of the BAM file<a class="headerlink" href="#damage-analysis-and-quality-rescaling-of-the-bam-file" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="damage-analysis-and-quality-rescaling-of-the-bam-file">
+<h1><span class="section-number">6. </span>Damage analysis and quality rescaling of the BAM file<a class="headerlink" href="#damage-analysis-and-quality-rescaling-of-the-bam-file" title="Permalink to this headline"></a></h1>
 <p>To authenticate our analysis we will assess the <em>post-mortem</em> damage of the reads aligned to the reference sequence. We can track the <em>post-portem</em> damage accumulated by DNA molecules in the form of fragmentation due to depurination and cytosine deamination, which generates the typical pattern of <strong>C-&gt;T</strong> and <strong>G-&gt;A</strong> variation at the 5’- and 3’-end of the DNA molecules. To assess the <em>post-mortem</em> damage patterns in our <code class="docutils literal notranslate"><span class="pre">bam</span></code> file we will use <code class="docutils literal notranslate"><span class="pre">mapDamage</span></code>, which analyses the size distribution of the reads and the base composition of the genomic regions located up- and downstream of each read, generating various plots and summary tables. To start the analysis we need the final <code class="docutils literal notranslate"><span class="pre">bam</span></code> and the reference sequence:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapDamage</span> <span class="o">-</span><span class="n">i</span> <span class="n">filename</span><span class="o">.</span><span class="n">final</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">bam</span> <span class="o">-</span><span class="n">r</span> <span class="n">reference</span><span class="o">.</span><span class="n">fasta</span>
 </pre></div>
@@ -179,74 +87,54 @@ A new rescaled <code class="docutils literal notranslate"><span class="pre">bam<
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Another useful tool for estimating <em>post-mortem</em> damage (PMD) is <a class="reference external" href="https://github.com/pontussk/PMDtools">PMDTools</a>. This program uses a model incorporating PMD, base quality scores and biological polymorphism to assign a PMD score to the reads. PMD &gt; 0 indicates support for the sequence being genuinely ancient. PMDTools filters the damaged reads (based on the selected score) in a separate <code class="docutils literal notranslate"><span class="pre">bam</span></code> file which can be used for downstream analyses (e.g. variant call).</p>
+<p class="admonition-title">Note</p>
+<p>Another useful tool for estimating <em>post-mortem</em> damage (PMD) is <a class="reference external" href="https://github.com/pontussk/PMDtools">PMDTools</a>. This program uses a model incorporating PMD, base quality scores and biological polymorphism to assign a PMD score to the reads. PMD &gt; 0 indicates support for the sequence being genuinely ancient. PMDTools filters the damaged reads (based on the selected score) in a separate <code class="docutils literal notranslate"><span class="pre">bam</span></code> file which can be used for downstream analyses (e.g. variant call).</p>
 </div>
 <p>The rescaled <code class="docutils literal notranslate"><span class="pre">bam</span></code> file has to be indexed, as usual.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">index</span> <span class="n">filename</span><span class="o">.</span><span class="n">final</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">rescaled</span><span class="o">.</span><span class="n">bam</span>
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="7_VariantsCall.html" class="btn btn-neutral float-right" title="7. Variant calling and visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="5_SummaryReports.html" class="btn btn-neutral float-left" title="5. Create Summary Reports" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5_SummaryReports.html" class="btn btn-neutral float-left" title="5. Create Summary Reports" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019, Claudio Ottoni
-
-    </p>
+    <p>&#169; Copyright 2019, Claudio Ottoni.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-1"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-XXXXXXX-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-XXXXXXX-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

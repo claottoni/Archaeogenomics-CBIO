@@ -20,12 +20,12 @@ Contents
    :numbered:
    
    1_ListTools
-   2_ReadsFiltering
-   3_PreparationReference
-   4_ReadsMapping_v2
+   2_ReadsFiltering_2022
+   3_PreparationReference_2022
+   4_ReadsMapping_v2_2022
    5_SummaryReports
    6_DamageAnalysis
-   7_VariantsCall
+   7_VariantsCall_2022
 
 
 * :ref:`genindex`
