@@ -71,7 +71,7 @@ Sorting and indexing the bam file
 To go on with the analysis, we have to sort the reads aligned in the ``bam`` file by leftmost coordinates (or by read name when the option ``-n`` is used) with ``Samtools sort``. The option ``-o`` is used to provide an output file name:
 ::
 
-  samtools sort filename.bam -o filename.sort.bam
+  samtools sort filename.sam -o filename.sort.bam
 
 The sorted bam files are then indexed with ``Samtools index``. Indexes allow other programs to retrieve specific parts of the ``bam`` file without reading through each sequence. The following command generates a ``bai`` file, a companion file of the ``bam`` which contains the indexes:
 ::
@@ -85,12 +85,21 @@ Adding Read Group tags and indexing bam files
 A number of predefined tags may be appropriately assigned to specific set of reads in order to distinguish samples, libraries and other technical features. To do that we will use ``Picard``. You may want to use ``RGLB`` (library ID) and ``RGSM`` (sample ID) tags at your own convenience based on the experimental design. Remember to call ``Picard`` from the path of the ``jar`` file, here: ``/home/aurochs/Software/picard/picard.jar``
 ::
 
-  java -jar /home/aurochs/Software/picard/picard.jar AddOrReplaceReadGroups INPUT=filename.sort.bam OUTPUT=filename.RG.bam RGID=rg_id RGLB=lib_id RGPL=platform RGPU=plat_unit RGSM=sam_id VALIDATION_STRINGENCY=LENIENT
+ picard AddOrReplaceReadGroups INPUT=filename.sort.bam OUTPUT=filename.RG.bam RGID=rg_id RGLB=lib_id RGPL=platform RGPU=plat_unit RGSM=sam_id VALIDATION_STRINGENCY=LENIENT
+
+.. note::
+
+  In some environments we can call ``Picard`` just by typing the program name. In other environments (including this server) you may have to call Picard by providing the full path to the java file (``jar``) of the program. Here, the path is: ``java -jar /home/aurochs/Software/picard/picard.jar``
+
+  ::
+   
+    java -jar /home/aurochs/Software/picard/picard.jar CreateSequenceDictionary R= referece.fasta O= ref.dict
 
 .. note::
   
   - In some instances ``Picard`` may stop running and return error messages due to conflicts with ``sam`` specifications produced by ``BWA`` (e.g. "MAPQ should be 0 for unmapped reads"). To suppress this error and allow ``Picard`` to continue, we pass the ``VALIDATION_STRINGENCY=LENIENT`` options (default is ``STRICT``).
   - Read Groups may be also added during the alignment with ``BWA`` using the option ``-R``. 
+
 
 .. warning::
   
