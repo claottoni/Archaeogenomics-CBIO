@@ -33,10 +33,11 @@ A dictionary file (``dict``) is necessary to run later in the pipeline ``GATK Re
 ::
 
   picard CreateSequenceDictionary R= referece.fasta O= reference.dict
- 
+
+
 .. note:: 
 
-  In our server environment we can call Picard just by typing the program name. In other environments (including your laptop) you may have to call Picard by providing the full path to the java file ``jar`` of the program:
+  In our server environment we can call Picard just by typing the program name. In other environments (including your laptop) you may have to call Picard by providing the full path to the java file ``jar`` of the program.
    
   ::
      
